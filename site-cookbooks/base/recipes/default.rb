@@ -6,7 +6,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-%w{zsh git tmux curl}.each do |pkg|
+if platform_family?('gentoo')
+  packages = %w{zsh git tmux net-misc/curl}
+else
+  packages = %w{zsh git tmux curl}
+end
+
+packages.each do |pkg|
   package pkg do
     action :install
   end

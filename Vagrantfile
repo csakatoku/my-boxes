@@ -31,6 +31,15 @@ Vagrant.configure("2") do |config|
     # config.vm.synced_folder "../data", "/vagrant_data"
   end
 
+  config.vm.define :ubuntu do |config|
+    config.vm.box = "ubuntu-14.04-server-amd64"
+    config.vm.box_url = "file://#{Dir.pwd}/boxes/ubuntu-14.04-server-amd64.box"
+
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    config.vm.network :private_network, ip: "192.168.56.202"
+  end
+
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
